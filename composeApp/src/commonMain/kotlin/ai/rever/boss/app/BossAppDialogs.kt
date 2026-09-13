@@ -8,6 +8,7 @@ import ai.rever.boss.components.dialogs.HtmlFileOpenDialog
 import ai.rever.boss.components.dialogs.LogoutConfirmationDialog
 import ai.rever.boss.components.dialogs.McpApprovalDialog
 import ai.rever.boss.components.dialogs.NewProjectWizardDialog
+import ai.rever.boss.components.onboarding.FirstSessionBanner
 import ai.rever.boss.components.dialogs.NewTabDialog
 import ai.rever.boss.components.dialogs.ProjectOpenModeDialog
 import ai.rever.boss.components.dialogs.ProjectSelectionDialog
@@ -1154,6 +1155,28 @@ internal fun BossAppDialogs(state: BossAppState) {
                         logger.error(LogCategory.SYSTEM, "Plugin manager not available during installation")
                         Result.failure(Exception("Toolbox not available"))
                     }
+                }
+            },
+        )
+    }
+
+    if (state.showFirstSessionBanner) {
+        FirstSessionBanner(
+            onOpenWorkspace = {
+                state.pendingWorkspacePrompt = "Get Started"
+            },
+            onOpenToolbox = {
+                state.draggablePanelComponent
+                    .toolboxSidebarItem()
+                    ?.let { item ->
+                        state.draggablePanelComponent
+                            .handleSidebarItemClick(item)
+                    }
+            },
+            onDismiss = {
+                state.showFirstSessionBanner = false
+                state.coroutineScope.launch(Dispatchers.IO) {
+                    UserDataStorage.setFirstSessionBannerDismissed(true)
                 }
             },
         )

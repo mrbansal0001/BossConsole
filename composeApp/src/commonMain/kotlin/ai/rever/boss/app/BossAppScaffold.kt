@@ -104,9 +104,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.Dispatchers
-import ai.rever.boss.components.onboarding.FirstSessionBanner
-import ai.rever.boss.services.auth.UserDataStorage
 
 /**
  * The toast overlay's size before its content has been measured - a small first-frame placeholder,
@@ -655,29 +652,6 @@ internal fun BossAppScaffold(
                             },
                         )
                     }
-                }
-
-                AnimatedVisibility(
-                    visible = state.showFirstSessionBanner,
-                    enter = expandVertically(),
-                    exit = shrinkVertically(),
-                ) {
-                    FirstSessionBanner(
-                        onOpenToolbox = {
-                            state.draggablePanelComponent
-                                .toolboxSidebarItem()
-                                ?.let { item ->
-                                    state.draggablePanelComponent
-                                        .handleSidebarItemClick(item)
-                                }
-                        },
-                        onDismiss = {
-                            state.showFirstSessionBanner = false
-                            state.coroutineScope.launch(Dispatchers.IO) {
-                                UserDataStorage.setFirstSessionBannerDismissed(true)
-                            }
-                        },
-                    )
                 }
 
                 Row(

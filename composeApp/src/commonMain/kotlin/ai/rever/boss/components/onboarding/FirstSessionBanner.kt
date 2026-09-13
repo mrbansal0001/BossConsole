@@ -1,24 +1,27 @@
 package ai.rever.boss.components.onboarding
 
-import androidx.compose.foundation.background
+import ai.rever.boss.plugin.ui.BossDialog
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.LocalContentColor
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Celebration
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Extension
 import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.Link
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,96 +35,162 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun FirstSessionBanner(
+    onOpenWorkspace: () -> Unit,
     onOpenToolbox: () -> Unit,
     onDismiss: () -> Unit,
-    modifier: Modifier = Modifier,
 ) {
-    var showAgentAddress by remember { mutableStateOf(false) }
     val clipboardManager = LocalClipboardManager.current
-
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colors.surface.copy(alpha = 0.9f))
-            .padding(horizontal = 8.dp, vertical = 6.dp)
+    
+    BossDialog(
+        onDismissRequest = {},
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier.padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Left: Icon + Text
-            Icon(
-                imageVector = Icons.Default.Celebration,
-                contentDescription = null,
-                tint = MaterialTheme.colors.onSurface
-            )
-            Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = "Welcome to BOSS — here's where to start",
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.body2,
-                color = MaterialTheme.colors.onSurface
+                text = "Welcome to BOSS",
+                style = MaterialTheme.typography.h5,
+                fontWeight = FontWeight.Bold
             )
-
-            Spacer(modifier = Modifier.width(16.dp))
-
-            // Center: Three action buttons
-            TextButton(onClick = onOpenToolbox) {
-                Icon(Icons.Default.FolderOpen, contentDescription = null)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text("Open a Workspace")
-            }
-
-            TextButton(onClick = { showAgentAddress = !showAgentAddress }) {
-                Icon(Icons.Default.Link, contentDescription = null)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text("Connect an Agent")
-            }
-
-            TextButton(onClick = onOpenToolbox) {
-                Icon(Icons.Default.Extension, contentDescription = null)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text("Open Toolbox")
-            }
-
-            Spacer(modifier = Modifier.weight(1f))
-
-            // Right: Close button
-            IconButton(onClick = onDismiss) {
-                Icon(
-                    imageVector = Icons.Default.Close,
-                    contentDescription = "Dismiss welcome banner",
-                    tint = MaterialTheme.colors.onSurface
-                )
-            }
-        }
-
-        if (showAgentAddress) {
-            Row(
-                modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 4.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Point your agent at ",
-                    color = MaterialTheme.colors.onSurface
-                )
-                Text(
-                    text = "127.0.0.1:7677",
-                    fontFamily = FontFamily.Monospace,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onSurface
-                )
-                IconButton(
-                    onClick = { clipboardManager.setText(AnnotatedString("127.0.0.1:7677")) }
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = "You are all set. Here is where to start.",
+                style = MaterialTheme.typography.body1,
+                color = LocalContentColor.current.copy(alpha = 0.7f)
+            )
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                // Card 1
+                Card(
+                    modifier = Modifier.weight(1f),
+                    onClick = {
+                        onOpenWorkspace()
+                        onDismiss()
+                    }
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.ContentCopy,
-                        contentDescription = "Copy address",
-                        tint = MaterialTheme.colors.onSurface
-                    )
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(20.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.FolderOpen,
+                            contentDescription = "Open a Workspace",
+                            modifier = Modifier.size(40.dp)
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = "Open a Workspace",
+                            style = MaterialTheme.typography.body1,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Launch a workspace layout to get started",
+                            style = MaterialTheme.typography.body2,
+                            color = LocalContentColor.current.copy(alpha = 0.7f)
+                        )
+                    }
                 }
+                
+                // Card 2
+                var showAddress by remember { mutableStateOf(false) }
+                Card(
+                    modifier = Modifier.weight(1f),
+                    onClick = {
+                        showAddress = !showAddress
+                    }
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(20.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Link,
+                            contentDescription = "Connect an Agent",
+                            modifier = Modifier.size(40.dp)
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = "Connect an Agent",
+                            style = MaterialTheme.typography.body1,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Point your agent at 127.0.0.1:7677",
+                            style = MaterialTheme.typography.body2,
+                            color = LocalContentColor.current.copy(alpha = 0.7f)
+                        )
+                        if (showAddress) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    text = "127.0.0.1:7677",
+                                    fontFamily = FontFamily.Monospace,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                IconButton(
+                                    onClick = {
+                                        clipboardManager.setText(AnnotatedString("127.0.0.1:7677"))
+                                    }
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.ContentCopy,
+                                        contentDescription = "Copy address",
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // Card 3
+                Card(
+                    modifier = Modifier.weight(1f),
+                    onClick = {
+                        onOpenToolbox()
+                        onDismiss()
+                    }
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.padding(20.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Extension,
+                            contentDescription = "Open Toolbox",
+                            modifier = Modifier.size(40.dp)
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = "Open Toolbox",
+                            style = MaterialTheme.typography.body1,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Install more plugins anytime",
+                            style = MaterialTheme.typography.body2,
+                            color = LocalContentColor.current.copy(alpha = 0.7f)
+                        )
+                    }
+                }
+            }
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            
+            Button(
+                onClick = onDismiss,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Get Started")
             }
         }
     }
