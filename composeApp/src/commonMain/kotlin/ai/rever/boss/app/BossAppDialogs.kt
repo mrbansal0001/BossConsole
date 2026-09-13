@@ -1232,6 +1232,7 @@ internal fun BossAppDialogs(state: BossAppState) {
                     UserDataStorage.setPluginWizardCompleted(true)
                 }
                 state.showPluginInstallWizard = false
+                state.showFirstSessionBanner = true
                 state.focusRequester.requestFocus()
                 logger.info(LogCategory.SYSTEM, "Plugin wizard completed")
             },
