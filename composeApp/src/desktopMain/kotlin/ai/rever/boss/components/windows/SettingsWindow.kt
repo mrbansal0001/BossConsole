@@ -41,7 +41,6 @@ import ai.rever.boss.utils.logging.BossLogger
 import ai.rever.boss.utils.logging.LogCategory
 import ai.rever.boss.window.ApplyBossWindowIcon
 import ai.rever.boss.window.BossWindowIcon
-import ai.rever.boss.window.MenuActionsHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -725,37 +724,7 @@ private fun SettingsContentArea(
                     ThemeSettings()
                 }
 
-                SettingsSection.GETTING_STARTED -> {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(32.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        Text(
-                            "Getting Started",
-                            style = MaterialTheme.typography.h5,
-                            fontWeight = FontWeight.Bold
-                        )
-                        Text(
-                            "Reopen the first-run welcome guide to revisit " +
-                            "workspace setup, agent connection steps, and " +
-                            "quick actions for new users.",
-                            style = MaterialTheme.typography.body1,
-                            color = LocalContentColor.current.copy(alpha = 0.7f)
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Button(
-                            onClick = {
-                                coroutineScope.launch {
-                                    MenuActionsHandler.triggerReopenGettingStarted()
-                                }
-                            }
-                        ) {
-                            Text("Reopen Getting Started Guide")
-                        }
-                    }
-                }
+                SettingsSection.GETTING_STARTED -> GettingStartedSettings()
 
                 else -> {}
             }

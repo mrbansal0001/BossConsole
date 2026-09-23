@@ -657,6 +657,7 @@ internal fun BossAppMenuActionEffects(
                     }
                     if (state.availablePluginsForWizard.isNotEmpty()) {
                         state.showPluginInstallWizard = true
+                        state.pluginInstallWizardRequestGeneration++
                     }
                 }
             }.launchIn(this)
@@ -672,14 +673,6 @@ internal fun BossAppMenuActionEffects(
                     val count = result.getOrElse { 0 }
                     StatusMessageManager.showMessage("Reloaded $count plugin(s)")
                 }
-            }.launchIn(this)
-    }
-
-    // Handle reopen getting started events
-    LaunchedEffect(windowId) {
-        MenuActionsHandler.reopenGettingStartedEvents
-            .onEach {
-                state.terminalOnboardingOwnerStarted = true
             }.launchIn(this)
     }
 
