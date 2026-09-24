@@ -580,7 +580,6 @@ private fun SettingsContentArea(
     section: SettingsSection,
     modifier: Modifier = Modifier,
 ) {
-    val coroutineScope = rememberCoroutineScope()
 
     // Keyed on the section. Unkeyed, one scroll position was shared by every page, so leaving
     // Security scrolled to the bottom and clicking Sidebar landed you at the bottom of a short

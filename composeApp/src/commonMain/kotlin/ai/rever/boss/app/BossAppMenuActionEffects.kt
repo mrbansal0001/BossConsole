@@ -24,7 +24,6 @@ import ai.rever.boss.components.workspaces.extractCurrentWorkspace
 import ai.rever.boss.components.workspaces.workspaceManager
 import ai.rever.boss.focusmode.FocusModeSettingsManager
 import ai.rever.boss.plugin.browser.ActiveBrowserRegistry
-import ai.rever.boss.plugin.browser.BrowserHandle
 import ai.rever.boss.plugin.tab.terminal.TerminalTabInfo
 import ai.rever.boss.plugin.tab.terminal.TerminalTabType
 import ai.rever.boss.project.DefaultWorkingDirectory
@@ -656,7 +655,6 @@ internal fun BossAppMenuActionEffects(
                     }
                     if (state.availablePluginsForWizard.isNotEmpty()) {
                         state.showPluginInstallWizard = true
-                        state.pluginInstallWizardRequestGeneration++
                     }
                 }
             }.launchIn(this)

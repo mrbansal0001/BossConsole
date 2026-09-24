@@ -231,7 +231,6 @@ internal class BossAppState(
 
     // --- Plugin install wizard (shown on first login) ------------------------
     var showPluginInstallWizard by mutableStateOf(false)
-    var pluginInstallWizardRequestGeneration by mutableStateOf(0)
     var terminalOnboardingOwnerStarted by mutableStateOf(false)
     var terminalOnboardingRequestGeneration by mutableStateOf(0)
     var pluginWizardChecked by mutableStateOf(false)
