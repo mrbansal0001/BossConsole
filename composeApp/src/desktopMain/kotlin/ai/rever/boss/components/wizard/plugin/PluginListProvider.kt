@@ -276,7 +276,8 @@ object PluginListProvider {
             WizardPluginInfo(
                 id = "ai.rever.boss.plugin.dynamic.terminaltab",
                 name = "Terminal Tab",
-                description = "Run shell commands inside BOSS — your agent can execute scripts and read terminal output",
+                description = "Run shell commands inside BOSS — your agent can execute scripts and read terminal" +
+                    "output",
                 version = "1.0.4",
                 icon = Icons.Default.Terminal,
                 isDefault = true,
@@ -307,7 +308,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.console",
                     name = "Console",
-                    description = "See everything BOSS and your agent are doing behind the scenes — useful when things go wrong",
+                    description = "See everything BOSS and your agent are doing behind the scenes — useful when" +
+                        "things go wrong",
                     version = "1.0.0",
                     icon = Icons.Default.Code,
                     isDefault = true,
@@ -327,7 +329,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.aigateway",
                     name = "AI Gateway",
-                    description = "Connects the Fluck Agent to AI providers — required for the built-in assistant to work",
+                    description = "Connects the Fluck Agent to AI providers — required for the built-in assistant to" +
+                        "work",
                     version = "1.0.0",
                     icon = Icons.Default.AutoAwesome,
                     isDefault = true,
@@ -357,7 +360,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.codebase",
                     name = "Codebase",
-                    description = "Browse your project files and let your agent navigate your codebase to understand context",
+                    description = "Browse your project files and let your agent navigate your codebase to understand" +
+                        "context",
                     version = "1.0.0",
                     icon = Icons.Default.Folder,
                     isDefault = false,
@@ -366,7 +370,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.gitstatus",
                     name = "Git Status",
-                    description = "See uncommitted changes at a glance — your agent can read this to understand what's in progress",
+                    description = "See uncommitted changes at a glance — your agent can read this to understand" +
+                        "what's in progress",
                     version = "1.0.0",
                     icon = Icons.Default.Engineering,
                     isDefault = false,
@@ -375,7 +380,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.gitlog",
                     name = "Git Log",
-                    description = "Explore your project's commit history — useful for your agent to understand recent changes",
+                    description = "Explore your project's commit history — useful for your agent to understand recent" +
+                        "changes",
                     version = "1.0.0",
                     icon = Icons.Default.History,
                     isDefault = false,
@@ -394,7 +400,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.topofmind",
                     name = "Top of Mind",
-                    description = "Keeps your most-used tabs one click away — helps your agent know what you're focused on",
+                    description = "Keeps your most-used tabs one click away — helps your agent know what you're" +
+                        "focused on",
                     version = "1.0.0",
                     icon = Icons.Default.Lightbulb,
                     isDefault = false,
@@ -413,7 +420,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.rparecorder",
                     name = "RPA Recorder",
-                    description = "Record your actions once and turn them into automation scripts your agent can replay",
+                    description = "Record your actions once and turn them into automation scripts your agent can" +
+                        "replay",
                     version = "1.0.0",
                     icon = Icons.Default.Videocam,
                     isDefault = false,
@@ -422,7 +430,8 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.rpaengine",
                     name = "RPA Engine",
-                    description = "Runs recorded automation scripts — required if you want your agent to execute workflows",
+                    description = "Runs recorded automation scripts — required if you want your agent to execute" +
+                        "workflows",
                     version = "1.0.0",
                     icon = Icons.Default.PlayArrow,
                     isDefault = false,
