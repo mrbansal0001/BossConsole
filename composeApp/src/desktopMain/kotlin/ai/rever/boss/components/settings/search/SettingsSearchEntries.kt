@@ -561,28 +561,28 @@ private fun keymapEntries() =
 private fun gettingStartedEntries() =
     section(SettingsSection.GETTING_STARTED) {
         group("Getting Started", "onboarding", "setup wizard", "welcome", "plugin wizard")
-        setting("Reopen Plugin Setup Wizard", "Getting Started")
+        setting("Plugin Setup Wizard", "Getting Started")
     }
 
 /** Every built-in entry, in the order the sections appear in the nav rail. */
 internal val builtInEntries: List<SettingsSearchEntry> by lazy {
     gettingStartedEntries() +
-    browserEntries() +
-    browserEngineEntries() +
-    defaultAppsEntries() +
-    runnerEntries() +
-    workspaceEntries() +
-    securityEntries() +
-    keymapEntries() +
-    focusModeEntries() +
-    themeEntries() +
-    windowAppearanceEntries() +
-    sidebarEntries() +
-    performanceEntries() +
-    startupEntries() +
-    scrollbarEntries() +
-    advancedEntries() +
-    updatesEntries() +
-    delegatedEntries() +
-    signpostEntries()
+        browserEntries() +
+        browserEngineEntries() +
+        defaultAppsEntries() +
+        runnerEntries() +
+        workspaceEntries() +
+        securityEntries() +
+        keymapEntries() +
+        focusModeEntries() +
+        themeEntries() +
+        windowAppearanceEntries() +
+        sidebarEntries() +
+        performanceEntries() +
+        startupEntries() +
+        scrollbarEntries() +
+        advancedEntries() +
+        updatesEntries() +
+        delegatedEntries() +
+        signpostEntries()
 }

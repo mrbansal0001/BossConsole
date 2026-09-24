@@ -23,22 +23,24 @@ class PluginWizardEventTest {
         testScope = CoroutineScope(Dispatchers.Unconfined)
         windowACount.set(0)
         windowBCount.set(0)
-        
-        collectorJobA = testScope.launch {
-            MenuActionsHandler.showPluginWizardEvents.collect { winId ->
-                if (winId == "window-A") {
-                    windowACount.incrementAndGet()
+
+        collectorJobA =
+            testScope.launch {
+                MenuActionsHandler.showPluginWizardEvents.collect { winId ->
+                    if (winId == "window-A") {
+                        windowACount.incrementAndGet()
+                    }
                 }
             }
-        }
-        
-        collectorJobB = testScope.launch {
-            MenuActionsHandler.showPluginWizardEvents.collect { winId ->
-                if (winId == "window-B") {
-                    windowBCount.incrementAndGet()
+
+        collectorJobB =
+            testScope.launch {
+                MenuActionsHandler.showPluginWizardEvents.collect { winId ->
+                    if (winId == "window-B") {
+                        windowBCount.incrementAndGet()
+                    }
                 }
             }
-        }
     }
 
     @AfterTest
@@ -51,7 +53,7 @@ class PluginWizardEventTest {
     @Test
     fun `triggerShowPluginWizard emits to the correct window only`() {
         MenuActionsHandler.triggerShowPluginWizard("window-A")
-        
+
         assertEquals(1, windowACount.get())
         assertEquals(0, windowBCount.get())
     }
@@ -61,16 +63,16 @@ class PluginWizardEventTest {
         MenuActionsHandler.triggerShowPluginWizard("window-A")
         MenuActionsHandler.triggerShowPluginWizard("window-A")
         MenuActionsHandler.triggerShowPluginWizard("window-A")
-        
+
         assertEquals(3, windowACount.get())
     }
 
     @Test
     fun `different windowId does not consume the event`() {
         collectorJobA?.cancel() // Set up a collector only for "window-B"
-        
+
         MenuActionsHandler.triggerShowPluginWizard("window-A")
-        
+
         assertEquals(0, windowBCount.get())
     }
 }

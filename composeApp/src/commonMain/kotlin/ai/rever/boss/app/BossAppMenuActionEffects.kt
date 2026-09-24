@@ -28,7 +28,6 @@ import ai.rever.boss.plugin.browser.BrowserHandle
 import ai.rever.boss.plugin.tab.terminal.TerminalTabInfo
 import ai.rever.boss.plugin.tab.terminal.TerminalTabType
 import ai.rever.boss.project.DefaultWorkingDirectory
-
 import ai.rever.boss.window.MenuActionsHandler
 import ai.rever.boss.window.WindowAppearanceSettings
 import ai.rever.boss.window.WindowAppearanceSettingsManager

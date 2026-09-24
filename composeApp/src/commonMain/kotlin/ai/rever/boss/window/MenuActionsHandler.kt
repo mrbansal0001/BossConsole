@@ -852,5 +852,4 @@ object MenuActionsHandler {
     fun triggerShowTerminalOnboarding(windowId: String) {
         _showTerminalOnboardingEvents.tryEmit(windowId)
     }
-
 }

@@ -316,7 +316,9 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.fluckagent",
                     name = "Fluck Agent",
-                    description = "BOSS's built-in AI assistant — gives your agent workspace tools and AI capabilities directly inside BOSS",
+                    description =
+                        "BOSS's built-in AI assistant — gives your agent workspace tools and " +
+                            "AI capabilities directly inside BOSS",
                     version = "1.0.0",
                     icon = Icons.Default.Psychology,
                     isDefault = true,
@@ -334,7 +336,9 @@ object PluginListProvider {
                 WizardPluginInfo(
                     id = "ai.rever.boss.plugin.dynamic.secretmanager",
                     name = "Secret Manager",
-                    description = "Store API keys and credentials securely — your agent uses these to act on your behalf without exposing them",
+                    description =
+                        "Store API keys and credentials securely — your agent uses these to " +
+                            "act on your behalf without exposing them",
                     version = "1.0.0",
                     icon = Icons.Default.Key,
                     isDefault = true,
